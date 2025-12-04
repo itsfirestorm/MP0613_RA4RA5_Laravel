@@ -4,15 +4,16 @@ namespace App\Models;
 
 class Film
 {
-    private $name, $year, $genre, $duration, $country;
+    private $name, $year, $genre, $duration, $country, $img_url;
 
-    public function __construct($name, $year, $genre, $duration, $country)
+    public function __construct($name, $year, $genre, $duration, $country, $img_url)
     {
         $this->name = $name;
         $this->year = $year;
         $this->genre = $genre;
         $this->duration = $duration;
         $this->country = $country;
+        $this->img_url = $img_url;
     }
 
     public function getName()
@@ -38,5 +39,10 @@ class Film
     public function getCountry()
     {
         return $this->country;
+    }
+
+    public function getImgUrl() 
+    {
+        return $this->img_url;
     }
 }

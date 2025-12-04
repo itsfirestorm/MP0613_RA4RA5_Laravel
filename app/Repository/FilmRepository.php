@@ -1,10 +1,8 @@
 <?php
-namespace App\Middleware;
+namespace App\Repository;
 
 use App\Models\Film;
 use Illuminate\Support\Facades\Cache;
-
-use function PHPUnit\Framework\isArray;
 
 class FilmRepository
 {
@@ -20,7 +18,7 @@ class FilmRepository
             $jsonData = file_get_contents(base_path($this->json_file));
             $data = json_decode($jsonData, true);
 
-            if (!isArray($data)) {
+            if (!is_array($data)) {
                 return [];
             }
 
@@ -31,7 +29,8 @@ class FilmRepository
                     $film['year'],
                     $film['genre'],
                     $film['duration'],
-                    $film['country']
+                    $film['country'],
+                    $film['img_url']
                 ),
                 $data
             );
