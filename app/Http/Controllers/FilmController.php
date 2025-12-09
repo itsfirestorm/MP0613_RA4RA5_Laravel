@@ -10,7 +10,8 @@ class FilmController extends Controller
     /**
      * Read films from storage
      */
-    public static function readFilms(): array {
+    public static function readFilms(): array 
+    {
         $repo = new FilmRepository();
         return $repo->getAll();
     }
@@ -54,7 +55,8 @@ class FilmController extends Controller
     /**
      * Lista TODAS las películas o filtra x año o categoría.
      */
-    public function listFilmsByYear(Request $request) {
+    public function listFilmsByYear(Request $request) 
+    {
         $year = $request->query('year');
         $films_filtered = [];
         
@@ -73,7 +75,8 @@ class FilmController extends Controller
         return view('films.list', ["films" => $films_filtered, "title" => $title]);
     }
 
-    public function listFilmsByGenre(Request $request) {
+    public function listFilmsByGenre(Request $request) 
+    {
         $genre = $request->query('genre');
         $genre = ucfirst($genre);
         $films_filtered = [];
@@ -98,6 +101,17 @@ class FilmController extends Controller
         $title = "Listado de todas las pelis";
         $films = self::readFilms();
 
+        return view("films.list", ["films" => $films, "title" => $title]);
+    }
+
+    public function sortFilms() 
+    {
+        $title = "Listado de todas las pelis, ordenadas por año";
+        $films = self::readFilms();
+
+        $year = array_map(fn($film) => $film->getYear(), $films);
+
+        array_multisort($year, SORT_DESC, $films);
         return view("films.list", ["films" => $films, "title" => $title]);
     }
 }
