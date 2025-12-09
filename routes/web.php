@@ -24,7 +24,9 @@ Route::middleware('year')->group(function() {
         // Routes included with prefix "filmout"
         Route::get('oldFilms/{year?}',[FilmController::class, "listOldFilms"])->name('oldFilms');
         Route::get('newFilms/{year?}',[FilmController::class, "listNewFilms"])->name('newFilms');
-        Route::get('films/{year?}/{genre?}',[FilmController::class, "listFilms"])->name('listFilms');
+        Route::get('films/byYear/',[FilmController::class, "listFilmsByYear"])->name('listFilmsByYear');
+        Route::get('films/byGenre/', [FilmController::class, "listFilmsByGenre"])->name('listFilmsByGenre');
+        Route::get('films/',[FilmController::class, "listFilms"])->name('listFilms');
     });
 });
 
