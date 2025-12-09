@@ -75,6 +75,7 @@ class FilmController extends Controller
 
     public function listFilmsByGenre(Request $request) {
         $genre = $request->query('genre');
+        $genre = ucfirst($genre);
         $films_filtered = [];
 
         $title = "Listado de películas por género";
